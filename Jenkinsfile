@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    environment {
+        DISABLE_AUTH = 'true'
+        DB_ENGINE    = 'sqlite'
+    }
     stages {
         stage('build') {
             steps {
@@ -8,6 +12,7 @@ pipeline {
                    echo "nicejob"
                    ls -lah
                 '''
+                sh 'printenv'
             }
         }
     }
