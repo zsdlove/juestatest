@@ -5,9 +5,6 @@ pipeline {
             steps {
                 sh 'mvn --version'
             }
-            steps {
-                echo 'ponyGG'
-            }
         }
     }
 }
