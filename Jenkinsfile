@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    environment {
+    environment {//设置环境变量
         DISABLE_AUTH = 'true'
         DB_ENGINE    = 'sqlite'
     }
@@ -12,7 +12,8 @@ pipeline {
                    echo "nicejob"
                    ls -lah
                 '''
-                sh 'printenv'
+                sh 'printenv'//打印环境变量
+                sh 'mvn package -DskipTests'
             }
         }
     }
