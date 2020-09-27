@@ -34,6 +34,7 @@ pipeline {
         }
         success {
             echo 'This will run only if successful'
+            sh 'curl http://127.0.0.1:8089'
         }
         failure {
             echo 'This will run only if failed'
