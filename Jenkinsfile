@@ -14,6 +14,7 @@ pipeline {
                 '''
                 //sh 'printenv'//打印环境变量
                 sh 'mvn package -DskipTests'
+                //sh ./codeqlagent.sh 'sourcepath' 'dbpath'
             }
         }
         stage('Test') {//测试
@@ -34,7 +35,7 @@ pipeline {
         }
         success {
             echo 'This will run only if successful'
-            sh 'curl http://127.0.0.1:8089'
+            sh 'curl http://127.0.0.1:8089'//可以通过curl命令来上传文件到服务端进行检测
         }
         failure {
             echo 'This will run only if failed'
