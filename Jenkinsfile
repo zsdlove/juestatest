@@ -3,7 +3,11 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                echo 'ponygg'
+                sh 'echo "ponygg"'
+                sh '''
+                   echo "nicejob"
+                   ls -lah
+                '''
             }
         }
     }
