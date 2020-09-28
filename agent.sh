@@ -5,15 +5,18 @@ language=java
 #配置服务端文件上传api
 api=http://127.0.0.1:8088/fileupload/
 
+#配置agent地址
+agentpath="http://127.0.0.1:9090/agent/codeqlpath.zip"
+
 #配置输出到jar包名称,如果采用直接分析jar包到方案到话，可配置。使用codeql方案无需配置。
 outjar="mypiplinetest-1.0-SNAPSHOT.jar"
 
 databasename='dbfile.zip'
 
-echo "by pony@lixiang.com"
-echo "======agent环境配置=========="
+echo "========开始配置agent运行环境========"
 echo "拉取远程agent"
-wget "http://127.0.0.1:9090/agent/codeqlpath.zip"
+wget $agentpath
+
 if [ $? -eq 0 ]; then
      echo "[*]download the agent successfully,and now begen to extracted the agent."
 else
