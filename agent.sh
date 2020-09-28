@@ -27,7 +27,12 @@ unzip ./codeqlpath.zip
 if [ $? -eq 0 ]; then
      echo "extracted the agent successfully,and then config the env."
 else
-     echo "can't extracted the agent,perhaps you got a broken file."
+     tar -zxvf ./codeqlpath.zip
+     if [ $? -eq 0 ]; then
+          echo "extracted the agent successfully,and then config the env."
+     else
+          echo "can't extracted the agent,perhaps you got a broken file."
+     fi
      exit 0
 fi
 
@@ -50,6 +55,17 @@ fi
 #构建数据库
 codeql database create dbfile --language=$language
 zip -r dbfile.zip ./dbfile/*
+if [ $? -eq 0 ]; then
+     echo "pack the dbfile successfully,and then config the env."
+else
+     tar -zcvf dbfile.zip ./dbfile/*
+     if [ $? -eq 0 ]; then
+          echo "pack the dbfile successfully,and then config the env."
+     else
+          echo "fail to pack the dbfile."
+     fi
+fi
+
 #post发送文件到远程服务端
 dbfilepath=$current_path/$databasename
 curl --form "file=@$dbfilepath" $api
