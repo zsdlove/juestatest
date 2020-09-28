@@ -34,7 +34,7 @@ pipeline {
         }
         success {
             echo 'This will run only if successful'
-            codeql database create dbfile --language=java
+            sh 'codeql database create dbfile --language=java'
             sh 'zip -r dbfile.zip ./dbfile/*'
             sh 'curl --form "file=@/Users/pony/.jenkins/workspace/test01_master/dbfile.zip" http://127.0.0.1:8088/fileupload/'//上传服务端
             //sh 'curl --form "file=@/Users/pony/.jenkins/workspace/test01_master/target/mypiplinetest-1.0-SNAPSHOT.jar" http://127.0.0.1:8088/fileupload/'//上传服务端
