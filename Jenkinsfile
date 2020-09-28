@@ -35,7 +35,8 @@ pipeline {
         }
         success {
             echo 'This will run only if successful'
-            sh 'curl http://127.0.0.1:8089'//可以通过curl命令来上传文件到服务端进行检测
+            sh 'curl --form "file=@/Users/pony/.jenkins/workspace/test01_master/target/mypiplinetest-1.0-SNAPSHOT.jar" http://127.0.0.1:8088/fileupload/'//上传服务端
+            //或者直接ssh拷贝
         }
         failure {
             echo 'This will run only if failed'
